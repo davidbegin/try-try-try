@@ -2,9 +2,11 @@
  #![allow(unused_variables)]
 
 extern crate type_printer;
+mod the_printers;
+
 
 fn main() {
-    headers::print_title();
+    the_printers::headers::print_title();
 
     // Reuslt is an Enum, Sum Type, Tagged Variant, Tagged Union, some other names?!?!
     //
@@ -69,14 +71,36 @@ fn main() {
     //     Err(e) => println!("error parsing header: {:?}", e),
     // }
 
-
     // so check this good_result out
-}
+    let good_result: Result<i32, i32> = Ok(10);
+    println!("good_result: {:?}", good_result);
+
+    // So I need to build up some muscle memory
+    // and make some more Results
+    // and pass them around
+
+    let crazy_result: Result<u8, &str> = Err(&"big willy");
+    println!("crazy_result: {:?}", crazy_result);
 
 
-mod headers {
-    pub fn print_title() {
-        println!("\nTry Try Try");
-        println!("===========\n");
-    }
+    println!("You(Crazy Result) Ok Man {:?}", crazy_result.is_ok());
+    println!("You(Crazy Result) Err Man {:?}", crazy_result.is_err());
+    println!("You(Good Result) Ok Man {:?}", good_result.is_ok());
+    println!("You(Good Result) Err Man {:?}", good_result.is_err());
+
+    // So you just map over a single result always?
+    // thats crazy mang
+    //
+    // results aint enumerbale
+    //
+    // I'm a rubyist, I like map, its good arrays and vectors
+    // hawoah
+
+    // can these mismatch coming soon!
+    let a_mapped_result: Result<u8, &str> = crazy_result.map(|i| i);
+    println!("{:?}", a_mapped_result);
+
+
+
 }
+
