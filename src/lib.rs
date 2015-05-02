@@ -7,7 +7,6 @@ struct HttpResponse {
     body: String,
 }
 
-
 fn response_validator(response: HttpResponse) -> Result<&'static str, &'static str> {
     if response.status == 200 {
         Ok("nice response")
@@ -18,29 +17,37 @@ fn response_validator(response: HttpResponse) -> Result<&'static str, &'static s
     }
 }
 
-#[test]
-fn it_returns_a_good_string_for_a_200_response() {
-    let raw_response = HttpResponse {
-        status  : 200,
-        headers : "{}".to_string(),
-        body    : "{}".to_string(),
-    };
 
-    assert_eq!(response_validator(raw_response).unwrap(), "nice response")
-}
+#[cfg(test)]
+mod test {
+    use super::HttpResponse;
+    use super::response_validator;
 
-#[test]
-fn it_returns_a_bad_string_for_404_response() {
-    let raw_response = HttpResponse {
-        status: 404,
-        headers: "{}".to_string(),
-        body: "{}".to_string(),
-    };
+    #[test]
+    fn it_returns_a_good_string_for_a_200_response() {
+        let raw_response = HttpResponse {
+            status  : 200,
+            headers : "{}".to_string(),
+            body    : "{}".to_string(),
+        };
 
-    let response = response_validator(raw_response);
-
-    match response {
-        Ok(v) => assert!(false),
-        Err(e) => assert!(true, "Hey 404's are supposed to be Err's"),
+        assert_eq!(response_validator(raw_response).unwrap(), "nice response")
     }
+
+    #[test]
+    fn it_returns_a_bad_string_for_404_response() {
+        let raw_response = HttpResponse {
+            status: 404,
+            headers: "{}".to_string(),
+            body: "{}".to_string(),
+        };
+
+        let response = response_validator(raw_response);
+
+        match response {
+            Ok(v) => assert!(false),
+            Err(e) => assert!(true, "Hey 404's are supposed to be Err's"),
+        }
+    }
+
 }
