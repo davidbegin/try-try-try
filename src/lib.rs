@@ -1,11 +1,10 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 
-
 // Httparty and Faraday combined!
 //
 // ruby everyone (applause)!
-mod http_day {
+pub mod http_day {
     pub struct HttpResponse {
         pub status: u16,
         pub headers: String,
