@@ -44,7 +44,3 @@ fn it_returns_a_bad_string_for_404_response() {
         Err(e) => assert!(true, "Hey 404's are supposed to be Err's"),
     }
 }
-
-#[test]
-fn it_works() {
-}
