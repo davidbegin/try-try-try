@@ -24,3 +24,11 @@ to rewrite some common ruby situations that could benefit from
 these language features, or really just this pattern.
 
 As this could be implemented in Ruby.
+
+---
+
+So now this is turning into an exploration, of common
+patterns seen in Rails controllers, and how to use
+Rust's Results to various language features to better express
+what we would like in Ruby.
+

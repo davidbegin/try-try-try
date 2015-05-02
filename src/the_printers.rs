@@ -3,4 +3,8 @@ pub mod headers {
         println!("\nTry Try Try");
         println!("===========\n");
     }
+
+    pub fn seperator() {
+        println!("\n");
+    }
 }
